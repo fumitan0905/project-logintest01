@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>スケジュール管理ページ</title>
+	<link rel="stylesheet" href="../css/schedule.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h2>日程管理</h2>
+	<hr>
+	<iframe class="cal"
+		src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23B39DDB&ctz=Asia%2FTokyo&hl=ja&showTz=0&mode=MONTH&src=ZnVtaXRhbjA5MDVAZ21haWwuY29t&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679"
+		style="border-width:0" width="900" height="600" frameborder="0" scrolling="no"></iframe>
+
+	<footer th:replace="footer"></footer>
+</body>
+
+</html>

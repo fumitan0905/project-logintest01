@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>健康管理ページ</title>
+	<link rel="stylesheet" href="../css/health.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<!--	<span th:text="${error}" style="color: red"></span>-->
+	<h2>健康管理カレンダー</h2>
+	<hr>
+	<div class="calendar-wrap">
+		<h1>
+			<a th:href="|/health?year=${lastYear}&month=${lastMonth}|">◀</a>
+			[[${year}]]年[[${month}]]月
+			<a th:href="|/health?year=${nextYear}&month=${nextMonth}|">▶</a>
+		</h1>
+
+		<table border="2" class="calendar">
+			<tr>
+				<th style="color: red;" scope="row">日</th>
+				<th>月</th>
+				<th>火</th>
+				<th>水</th>
+				<th>木</th>
+				<th>金</th>
+				<th style="color:blue;">土</th>
+			</tr>
+
+
+
+			<tr>
+				<th:block th:if="${week} > 0">
+					<td th:each="tmp : ${#numbers.sequence(0, week - 1)}"></td>
+				</th:block>
+
+				<td th:each="i : ${#numbers.sequence(1, 7 - week)}">
+					<a th:href="|/health/information?year=${year}&month=${month}&day=${i}|">[[${i}]]</a><br>
+
+				</td>
+			</tr>
+			<th:block th:each="i, cell : ${#numbers.sequence(8 - week, max)}">
+				<th:block th:if="${cell.index % 7} == 0">
+					<tr>
+				</th:block>
+				<td>
+					<a th:href="|/health/information?year=${year}&month=${month}&day=${i}|">[[${i}]]</a><br>
+
+				</td>
+			</th:block>
+		</table>
+	</div>
+
+	<div class="health02">
+		<hr>
+		<h2>健康データ</h2>
+		<hr>
+		<span th:text="${error}" style="color: red"></span>
+
+		<table border="1">
+			<tr>
+				<th>選手ID</th>
+				<th>選手名</th>
+				<th>身長</th>
+				<th>体重</th>
+				<th>年齢</th>
+				<th>体脂肪率</th>
+				<th>基礎代謝(オフの日)</th>
+				<th>基礎代謝(練習の日)</th>
+				<th>過去の健康データ</th>
+
+			</tr>
+			<tr th:each="p:${playerList}">
+				<td th:text="${p.id}"></td>
+				<td><a th:href="'/health/'+${p.id}+'/edit'" th:text="${p.name}"></a></td>
+				<td th:text="${p.height}"></td>
+				<td th:text="${p.weight}"></td>
+				<td th:text="${p.age}"></td>
+				<td th:text="${p.bodyFatPer}+'%'"></td>
+				<td th:text="1.75*(28.5*(${p.weight}-(${p.weight}*(${p.bodyFatPer}/100))))+'(kcal)'"></td>
+				<td th:text="2.19*(28.5*(${p.weight}-(${p.weight}*(${p.bodyFatPer}/100))))+'(kcal)'"></td>
+				<td><a th:href="'/health/'+${p.id}+'/detail'">閲覧</a></td>
+
+			</tr>
+			<br>
+		</table>
+	</div>
+	<footer th:replace="footer"></footer>
+</body>
+
+</html>

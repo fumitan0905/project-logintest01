@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>選手情報更新</title>
+	<base href="/">
+	<link rel="stylesheet" href="../css/edit.css">
+</head>
+
+
+<body>
+	<header th:replace="header"></header>
+	<h2>選手情報更新</h2>
+	<hr>
+	<form th:action="'/performance/'+${pp.playerId}+'/edit'" method="post">
+		<table border="1">
+			<tr>
+				<th>選手ID</th>
+				<td>[[${pp.id}]]</td>
+			</tr>
+			<tr>
+				<th>選手ID</th>
+				<td>[[${pp.playerId}]]</td>
+			</tr>
+			<tr>
+				<th>選手名</th>
+				<td th:text="${player.name}"></td>
+			</tr>
+			<tr>
+				<th>ポジション</th>
+				<td th:text="${player.position}"></td>
+			</tr>
+			<tr>
+				<th>得点数</th>
+				<td><input type="number" name="goals" th:value="${pp.goals}" min="0"></td>
+			</tr>
+			<tr>
+				<th>アシスト数</th>
+				<td><input type="number" name="asists" th:value="${pp.asists}" min="0"></td>
+			</tr>
+			<tr>
+				<th>ファウル数</th>
+				<td><input type="number" name="foul" th:value="${pp.foul}" min="0"></td>
+			</tr>
+			<tr>
+				<th>被ファウル数</th>
+				<td><input type="number" name="fouled" th:value="${pp.fouled}" min="0"></td>
+			</tr>
+			<tr>
+				<th>イエローカード数</th>
+				<td><input type="number" name="yellowcard" th:value="${pp.yellowcard}" min="0"></td>
+			</tr>
+			<tr>
+				<th>レッドカード数</th>
+				<td><input type="number" name="redcard" th:value="${pp.redcard}" min="0"></td>
+			</tr>
+			<tr>
+				<th>試合数</th>
+				<td><input type="number" name="games" th:value="${pp.games}" min="0"></td>
+			</tr>
+		</table>
+
+		<table class="edittable">
+			<tr>
+				<td><a href="/performance">戻る</a></td>
+				<td><input type="submit" class="button" value="更新"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+
+</html>

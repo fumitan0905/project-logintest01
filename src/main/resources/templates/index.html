@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>管理者システム</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+	<h1><span>管理者システム<br>トップページ</span></h1>
+	<p sec:authorize="authenticated">　ようこそ！　<span sec:authentication="principal.loginUser.name">ユーザー</span>さん</p>
+	<div class='vertical-menu-wrapper'>
+		<ul class="vertical-menu ul--reset">
+
+			<ul class="sidenav">
+				<li sec:authorize="not authenticated"><a th:href="@{/login}">ログインはこちら</a></li>
+				<li sec:authorize-url="/performance"><a href="performance.html" th:href="@{/performance}">成績管理ページへ</a>
+				</li>
+				<li sec:authorize-url="/health"><a href="health.html" th:href="@{/health}">健康管理ページへ</a></li>
+				<li sec:authorize-url="/schedule"><a href="schedule.html" th:href="@{/schedule}">スケジュール管理ページへ</a></li>
+				<li sec:authorize-url="/message"><a href="message.html" th:href="@{/message}">伝言板ページへ</a></li>
+				<li>
+					<form method="post" action="index.html" th:action="@{/logout}">
+						<input type="submit" class="button" value="ログアウト" />
+					</form>
+				</li>
+			</ul>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+.btn_item{
+  display: inline-block;
+  padding: 10px 24px;
+  text-decoration: none;
+  background: rgb(128, 128, 128);
+  color: #fff;
+   border-radius: 5px;  
+}
+
+table {
+    border-collapse:  collapse; /* セルの線を重ねる */
+}
+ 
+tr:nth-child(odd) {
+    background-color:  #ddd;    /* 背景色指定 */
+}
+ 
+th,td {
+    padding: 5px 10px;          /* 余白指定 */
+    
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>過去健康情報</title>
+	<base href="/">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h2>過去健康情報</h2>
+	<hr>
+	<table border="1" id="t">
+
+		<tr>
+			<th>ID</th>
+			<th>名前</th>
+			<th>日時</th>
+			<th>起床時間</th>
+			<th>就寝時間</th>
+			<th>朝食</th>
+			<th>(cal)</th>
+			<th>昼食</th>
+			<th>(cal)</th>
+			<th>夕食</th>
+			<th>(cal)</th>
+
+			<th>合計</th>
+			<th>推奨cal(オフ)</th>
+			<th>過不足</th>
+			<th>推奨cal(TR)</th>
+			<th>過不足</th>
+		</tr>
+		<tr th:each="find:${finds}">
+			<td>[[${find.playerHealthId}]]
+			</td>
+			<td>[[${player.name}]]
+			</td>
+			<td>[[${find.eatDate}]]
+			</td>
+			<td>[[${find.wakeupTime}]]
+			</td>
+			<td>[[${find.bedtimeTime}]]
+			</td>
+
+			<th:block>
+				<td>[[${find.breakfastName}]]</td>
+				<td>[[${find.breakfastCalory}]]</td>
+				<td>[[${find.lunchName}]]</td>
+				<td>[[${find.lunchCalory}]]</td>
+				<td>[[${find.dinnerName}]]</td>
+				<td>[[${find.dinnerCalory}]]</td>
+				<td>
+					[[${find.breakfastCalory}+${find.lunchCalory}+${find.dinnerCalory}]]
+				</td>
+				<td th:if="${player.id == find.playerHealthId}">
+
+					[[${#numbers.formatDecimal(1.75*(28.5*(player.weight-(player.weight*(player.bodyFatPer/100)))), 0,
+					1)}]]</td>
+				<td th:if="${player.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal((find.breakfastCalory+find.lunchCalory+find.dinnerCalory)-(1.75*(28.5*(player.weight-(player.weight*(player.bodyFatPer/100))))),
+					0, 1)}]]
+				</td>
+				<td th:if="${player.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal(2.19*(28.5*(player.weight-(player.weight*(player.bodyFatPer/100)))), 0,
+					1)}]]</td>
+				<td th:if="${player.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal((find.breakfastCalory+find.lunchCalory+find.dinnerCalory)-(2.19*(28.5*(player.weight-(player.weight*(player.bodyFatPer/100))))),
+					0, 1)}]]
+				</td>
+			</th:block>
+		</tr>
+	</table>
+</body>
+
+<script>
+	// テーブルの色を変更する関数
+	function changeTableColor() {
+		var table = document.getElementById('t');
+		var wakeupCells = table.querySelectorAll('tr td:nth-child(4)');
+		var bedtimeCells = table.querySelectorAll('tr td:nth-child(5)');
+		var calCells1 = table.querySelectorAll('tr td:nth-child(14)');
+		var calCells2 = table.querySelectorAll('tr td:nth-child(16)');
+		
+		for (var i = 0; i < wakeupCells.length; i++) {
+			var wakeupCell = wakeupCells[i];
+			var wakeupTime = wakeupCell.innerHTML.trim(); // 起床時間を取得
+			var bedtimeCell = bedtimeCells[i];
+			var bedtime = bedtimeCell.innerHTML.trim(); // 就寝時間を取得
+
+			// 起床時間の色を設定
+			if (wakeupTime < '06:00') {
+				wakeupCell.style.backgroundColor = '#00FF00';
+			} else if (wakeupTime < '09:00') {
+				wakeupCell.style.backgroundColor = '#0099FF';
+			} else if (wakeupTime < '10:00') {
+				wakeupCell.style.backgroundColor = '#FF9900';
+			} else {
+				wakeupCell.style.backgroundColor = '#FF0099';
+			}
+
+			// 就寝時間の色を設定
+			if (bedtime < '06:00') {
+				bedtimeCell.style.backgroundColor = '#FF0099';
+			}
+			else if (bedtime <= '19:00') {
+				bedtimeCell.style.backgroundColor = '#00FF00';
+			} else if (bedtime <= '22:00') {
+				bedtimeCell.style.backgroundColor = '#0099FF';
+			} else if (bedtime <= '24:00') {
+				bedtimeCell.style.backgroundColor = '#FF9900';
+			}
+
+		}
+		for (var i = 0; i < calCells1.length; i++) {
+      var calCell1 = calCells1[i];
+      var calCell2 = calCells2[i];
+      var value1 = parseInt(calCell1.innerHTML.trim()); // セル1の値を数値として取得
+      var value2 = parseInt(calCell2.innerHTML.trim()); // セル2の値を数値として取得
+
+      // セル1の値が-500以上500以下の場合は青色、それ以外の場合は黄色を設定
+      if (value1 >= -500 && value1 <= 500) {
+        calCell1.style.backgroundColor = '#0099FF';
+      } else {
+        calCell1.style.backgroundColor = '#FF9900';
+      }
+
+      // セル2の値が-500以上500以下の場合は青色、それ以外の場合は黄色を設定
+      if (value2 >= -500 && value2 <= 500) {
+        calCell2.style.backgroundColor = '#0099FF';
+      } else {
+        calCell2.style.backgroundColor = '#FF9900';
+      }
+    }
+  }
+	// ページが読み込まれた時にテーブルの色を変更する
+	window.onload = changeTableColor;
+</script>
+
+</html>

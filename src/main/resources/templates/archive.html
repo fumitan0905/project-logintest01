@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>過去伝言</title>
+		<link rel="stylesheet" href="../css/message.css">
+</head>
+
+<body>
+		<header th:replace="header"></header>
+	<h2>過去伝言</h2>
+	<hr>
+
+	<li th:each="i:${#numbers.sequence(comments.size()-1, 0, -1)}"
+	th:with="comment=${comments[i]}">
+	from: <span sec:authentication="principal.loginUser.name"></span>
+		<p th:text="'メールアドレス：'+${comment.mail}"></p>
+		<p th:text="${comment.createdAt}"></p>
+		<p th:text="${comment.title}"></p>
+		<p th:text="${comment.content}"></p>
+		<form input></form>
+		<hr>
+	</li>
+
+	<a href="/message" class="btn_item">記入画面に戻る</a>
+	<footer th:replace="footer"></footer>
+</body>
+
+</html>

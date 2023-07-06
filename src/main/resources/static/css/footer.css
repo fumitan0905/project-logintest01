@@ -1,0 +1,19 @@
+footer {
+	width: 100%;
+	height: 80px;
+	background-color: transparent;
+	/*	color: white;*/
+		text-align: center;
+	  padding-top: 30px;
+  justify-content: space-evenly;
+}
+
+.footer a {
+	color: rgb(64, 128, 128);
+	font-weight: bold;
+	text-decoration: none;
+	width: 100px;
+	margin: 50px;
+
+}
+

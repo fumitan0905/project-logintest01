@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>選手登録</title>
+	<link rel="stylesheet" href="../css/edit.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h2>選手情報登録</h2>
+	<hr>
+	<span th:text="${error}" style="color: red"></span>
+	<form action="/performance/add" method="post">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<input type="hidden" name="goals" value="0">
+		<input type="hidden" name="asists" value="0">
+		<input type="hidden" name="foul" value="0">
+		<input type="hidden" name="fouled" value="0">
+		<input type="hidden" name="yellowcard" value="0">
+		<input type="hidden" name="redcard" value="0">
+		<input type="hidden" name="games" value="0">
+		<table border="1">
+			<tr>
+				<th>背番号</th>
+				<td><input type="number" name="playerId" min="1"></td>
+			</tr>
+			<tr>
+				<th>名前</th>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
+				<th>身長</th>
+				<td><input type="number" name="height" min="1" max="250"></td>
+			</tr>
+			<tr>
+				<th>体重</th>
+				<td><input type="number" name="weight" min="40" max="150"></td>
+			</tr>
+			<tr>
+				<th>年齢</th>
+				<td><input type="number" name="age" min="0" max="100"></td>
+			</tr>
+			<tr>
+				<th>ポジション</th>
+								<td><select name="position">
+					 	<option value="FW">FW</option>
+						<option value="MF">MF</option>
+						<option value="DF">DF</option>
+						<option value="GK">GK</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>出身地</th>
+		<td><input type="text" name="birthplace"></td>
+			</tr>
+			<tr>
+				<th>体脂肪率</th>
+				<td><input type="text" name="bodyFatPer" min="1" max="30"></td>
+			</tr>
+		</table>
+	
+	<table class="edittable">
+		<tr>
+			<td><a href="/performance">戻る</a></td>
+			<td><input type="submit" class="button" value="登録"></td>
+		</tr>
+	</table>
+</form>
+</body>
+
+</html>

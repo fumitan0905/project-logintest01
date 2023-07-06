@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>ログインページ</title>
+	<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+		<h1><span>管理者システム</span></h1>
+<!--	<p th:if="${param.error}" class="error">-->
+<!--		ユーザー名またはパスワードが違います。-->
+<!--	</p>-->
+<!--	<form method="post" action="index.html" th:action="@{/login}">-->
+<!--		ユーザー名: <input type="text" name="username"><br>-->
+<!--		パスワード: <input type="password" name="password"><br>-->
+<!--		<button type="submit">ログイン</button>-->
+<!--	</form>-->
+<!--</body>-->
+
+<!--</html>-->
+
+
+<div class="login-page">
+	<div class="form">
+		<p th:if="${param.error}" class="error">
+			ユーザー名またはパスワードが違います。
+		</p>
+		<form class="login-form" method="post" action="index.html" th:action="@{/login}">
+			<input type="text" name="username" placeholder="email" />
+			<input type="password" name="password" placeholder="password" />
+			<button type="submit">ログイン</button>
+		</form>
+	</div>
+</div>
+
+<script>
+	$('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+</script>
+</body>
+
+</html>

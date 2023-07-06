@@ -1,0 +1,23 @@
+<header>
+	<link rel="stylesheet" href="../css/header.css">
+
+	<div class="navigation">
+		<ul>
+			<li class="button"><a href="index">トップページ</a></li>
+			<li class="button" sec:authorize-url="/performance"><a href="performance.html"
+					th:href="@{/performance}">成績管理</a></li>
+			<li class="button" sec:authorize-url="/health"><a href="health.html" th:href="@{/health}">健康管理</a>
+				</liclass="button">
+			<li class="button" sec:authorize-url="/schedule"><a href="schedule.html"
+					th:href="@{/schedule}">スケジュール管理</a></li>
+			<li class="button" sec:authorize-url="/message"><a href="message.html" th:href="@{/message}">伝言板</a></li>
+			<li class="button">
+				<form method="post" action="index.html" th:action="@{/logout}">
+					<input type="submit" value="ログアウト" />
+					<!--				<button type="submit">ログアウト</button>-->
+				</form>
+			</li>
+		</ul>
+
+	</div>
+</header>

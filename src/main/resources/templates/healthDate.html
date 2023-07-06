@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>健康情報登録</title>
+		<base href="/">
+	<link rel="stylesheet" href="../css/healthDate.css">
+</head>
+
+<body>
+		<header th:replace="header"></header>
+	<h1>[[${year}]]年[[${month}]]月[[${day}]]日</h1>
+　　<a href="/health">一覧に戻る</a>
+	<a th:href="|/health/information?year=${lastYear}&month=${lastMonth}&day=${lastDay}|">Yesterday</a>
+	<a th:href="|/health/information?year=${nextYear}&month=${nextMonth}&day=${nextDay}">Tomorrow</a><br>
+	<form action="/health" method="post">
+		<input type="hidden" 
+					th:name="${_csrf.parameterName}" 
+					th:value="${_csrf.token}" />
+		<table border="3">
+			<tr>
+				<th>ID</th>
+				<td><input type="number" name="playerHealthId" th:value="${playerHealthId}"></td>
+				<td><input type="hidden" name="eatDate" th:value="${search}">[[${year}]]/[[${month}]]/[[${day}]]</td>
+				<th>起床時間</th>
+				<td><input type="time" name="wakeupTime" value="08:00" min="00:00" max="12:00" step="1800"></td>
+				<th>就寝時間</th>
+				<td><input type="time" name="bedtimeTime" value="22:00" min="13:00" max="24:00" step="1800"></td>
+				<th>朝食</th>
+				<td><select name="breakfastId">
+						<option value="1">刺身定食</option>
+						<option value="2">刺身定食,カツ丼</option>
+						<option value="3">刺身定食,牛丼</option>
+						<option value="4">刺身定食,ミートソーススパゲティ</option>
+						<option value="5">刺身定食,ハンバーガー</option>
+						<option value="6">刺身定食,醤油ラーメン</option>
+						<option value="7">刺身定食,ざるそば</option>
+						<option value="8">刺身定食,オムライス</option>
+						<option value="9">麻婆豆腐定食</option>
+						<option value="10">麻婆豆腐定食,カツ丼</option>
+						<option value="11">麻婆豆腐定食,牛丼</option>
+						<option value="12">麻婆豆腐定食,ミートソーススパゲテ</option>
+						<option value="13">麻婆豆腐定食,ハンバーガー</option>
+						<option value="14">麻婆豆腐定食,醤油ラーメン</option>
+						<option value="15">麻婆豆腐定食,ざるそば</option>
+						<option value="16">麻婆豆腐定食,オムライス</option>
+						<option value="17">サバの味噌煮定食</option>
+						<option value="18">サバの味噌煮定食,カツ丼</option>
+						<option value="19">サバの味噌煮定食,牛丼</option>
+						<option value="20">サバの味噌煮定食,ミートソーススパゲティ</option>
+						<option value="21">サバの味噌煮定食,ハンバーガー</option>
+						<option value="22">サバの味噌煮定食,醤油ラーメン</option>
+						<option value="23">サバの味噌煮定食,ざるそば</option>
+						<option value="24">サバの味噌煮定食,オムライス</option>
+						<option value="25">生姜焼き定食</option>
+						<option value="26">生姜焼き定食,カツ丼</option>
+						<option value="27">生姜焼き定食,牛丼</option>
+						<option value="28">生姜焼き定食,ミートソーススパゲティ</option>
+						<option value="29">生姜焼き定食,ハンバーガ</option>
+						<option value="30">生姜焼き定食,醤油ラーメン</option>
+						<option value="31">生姜焼き定食,ざるそば</option>
+						<option value="32">生姜焼き定食,オムライス</option>
+						<option value="33">カツ丼</option>
+						<option value="34">牛丼</option>
+						<option value="35">ミートソーススパゲティ</option>
+						<option value="36">ハンバーガ</option>
+						<option value="37">醤油ラーメン</option>
+						<option value="38">ざるそば</option>
+						<option value="39">オムライス</option>
+					</select></td>
+				<th>昼食</th>
+				<td><select name="lunchId">
+						<option value="1">刺身定食</option>
+						<option value="2">刺身定食,カツ丼</option>
+						<option value="3">刺身定食,牛丼</option>
+						<option value="4">刺身定食,ミートソーススパゲティ</option>
+						<option value="5">刺身定食,ハンバーガー</option>
+						<option value="6">刺身定食,醤油ラーメン</option>
+						<option value="7">刺身定食,ざるそば</option>
+						<option value="8">刺身定食,オムライス</option>
+						<option value="9">麻婆豆腐定食</option>
+						<option value="10">麻婆豆腐定食,カツ丼</option>
+						<option value="11">麻婆豆腐定食,牛丼</option>
+						<option value="12">麻婆豆腐定食,ミートソーススパゲテ</option>
+						<option value="13">麻婆豆腐定食,ハンバーガー</option>
+						<option value="14">麻婆豆腐定食,醤油ラーメン</option>
+						<option value="15">麻婆豆腐定食,ざるそば</option>
+						<option value="16">麻婆豆腐定食,オムライス</option>
+						<option value="17">サバの味噌煮定食</option>
+						<option value="18">サバの味噌煮定食,カツ丼</option>
+						<option value="19">サバの味噌煮定食,牛丼</option>
+						<option value="20">サバの味噌煮定食,ミートソーススパゲティ</option>
+						<option value="21">サバの味噌煮定食,ハンバーガー</option>
+						<option value="22">サバの味噌煮定食,醤油ラーメン</option>
+						<option value="23">サバの味噌煮定食,ざるそば</option>
+						<option value="24">サバの味噌煮定食,オムライス</option>
+						<option value="25">生姜焼き定食</option>
+						<option value="26">生姜焼き定食,カツ丼</option>
+						<option value="27">生姜焼き定食,牛丼</option>
+						<option value="28">生姜焼き定食,ミートソーススパゲティ</option>
+						<option value="29">生姜焼き定食,ハンバーガ</option>
+						<option value="30">生姜焼き定食,醤油ラーメン</option>
+						<option value="31">生姜焼き定食,ざるそば</option>
+						<option value="32">生姜焼き定食,オムライス</option>
+						<option value="33">カツ丼</option>
+						<option value="34">牛丼</option>
+						<option value="35">ミートソーススパゲティ</option>
+						<option value="36">ハンバーガ</option>
+						<option value="37">醤油ラーメン</option>
+						<option value="38">ざるそば</option>
+						<option value="39">オムライス</option>
+					</select></td>
+				<th>夕食</th>
+				<td><select name="dinnerId">
+						<option value="1">刺身定食</option>
+						<option value="2">刺身定食,カツ丼</option>
+						<option value="3">刺身定食,牛丼</option>
+						<option value="4">刺身定食,ミートソーススパゲティ</option>
+						<option value="5">刺身定食,ハンバーガー</option>
+						<option value="6">刺身定食,醤油ラーメン</option>
+						<option value="7">刺身定食,ざるそば</option>
+						<option value="8">刺身定食,オムライス</option>
+						<option value="9">麻婆豆腐定食</option>
+						<option value="10">麻婆豆腐定食,カツ丼</option>
+						<option value="11">麻婆豆腐定食,牛丼</option>
+						<option value="12">麻婆豆腐定食,ミートソーススパゲテ</option>
+						<option value="13">麻婆豆腐定食,ハンバーガー</option>
+						<option value="14">麻婆豆腐定食,醤油ラーメン</option>
+						<option value="15">麻婆豆腐定食,ざるそば</option>
+						<option value="16">麻婆豆腐定食,オムライス</option>
+						<option value="17">サバの味噌煮定食</option>
+						<option value="18">サバの味噌煮定食,カツ丼</option>
+						<option value="19">サバの味噌煮定食,牛丼</option>
+						<option value="20">サバの味噌煮定食,ミートソーススパゲティ</option>
+						<option value="21">サバの味噌煮定食,ハンバーガー</option>
+						<option value="22">サバの味噌煮定食,醤油ラーメン</option>
+						<option value="23">サバの味噌煮定食,ざるそば</option>
+						<option value="24">サバの味噌煮定食,オムライス</option>
+						<option value="25">生姜焼き定食</option>
+						<option value="26">生姜焼き定食,カツ丼</option>
+						<option value="27">生姜焼き定食,牛丼</option>
+						<option value="28">生姜焼き定食,ミートソーススパゲティ</option>
+						<option value="29">生姜焼き定食,ハンバーガ</option>
+						<option value="30">生姜焼き定食,醤油ラーメン</option>
+						<option value="31">生姜焼き定食,ざるそば</option>
+						<option value="32">生姜焼き定食,オムライス</option>
+						<option value="33">カツ丼</option>
+						<option value="34">牛丼</option>
+						<option value="35">ミートソーススパゲティ</option>
+						<option value="36">ハンバーガ</option>
+						<option value="37">醤油ラーメン</option>
+						<option value="38">ざるそば</option>
+						<option value="39">オムライス</option>
+					</select></td>
+		</table>
+		<input type="submit" class="btn_item" value="登録">
+				<span th:text="${error}" style="color: red"></span>
+
+	</form>
+
+
+	<table border="1" align="left">
+
+		<tr>
+			<td>ID</td>
+			<td>名前</td>
+			<td>起床時間</td>
+			<td>就寝時間</td>
+			<td>朝食</td>
+			<td>(cal)</td>
+			<td>昼食</td>
+			<td>(cal)</td>
+			<td>夕食</td>
+			<td>(cal)</td>
+
+			<td>合計</td>
+			<td>推奨cal(オフ)</td>
+			<td>過不足</td>
+			<td>推奨cal(TR)</td>
+			<td>過不足</td>
+			<th>削除</th>
+		</tr>
+		<tr th:each="find:${finds}">
+			<td>[[${find.playerHealthId}]]
+			</td>
+			<td th:each="player : ${playerList}" th:if="${player.id == find.playerHealthId}">[[${player.name}]]
+			</td>
+			<td>[[${find.wakeupTime}]]
+			</td>
+			<td>[[${find.bedtimeTime}]]
+			</td>
+			
+			<th:block>
+				<td>[[${find.breakfastName}]]</td>
+				<td>[[${find.breakfastCalory}]]</td>
+				<td>[[${find.lunchName}]]</td>
+				<td>[[${find.lunchCalory}]]</td>
+				<td>[[${find.dinnerName}]]</td>
+				<td>[[${find.dinnerCalory}]]</td>
+
+				<td>
+					[[${find.breakfastCalory}+${find.lunchCalory}+${find.dinnerCalory}]]
+				</td>
+				<td th:each="p : ${playerList}" th:if="${p.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal(1.75*(28.5*(p.weight-(p.weight*(p.bodyFatPer/100)))), 0, 1)}]]</td>
+				<td th:each="p : ${playerList}" th:if="${p.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal((find.breakfastCalory+find.lunchCalory+find.dinnerCalory)-(1.75*(28.5*(p.weight-(p.weight*(p.bodyFatPer/100))))), 0, 1)}]]
+				</td>
+				<td th:each="p : ${playerList}" th:if="${p.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal(2.19*(28.5*(p.weight-(p.weight*(p.bodyFatPer/100)))), 0, 1)}]]</td>
+				<td th:each="p : ${playerList}" th:if="${p.id == find.playerHealthId}">
+					[[${#numbers.formatDecimal((find.breakfastCalory+find.lunchCalory+find.dinnerCalory)-(2.19*(28.5*(p.weight-(p.weight*(p.bodyFatPer/100))))), 0, 1)}]]
+				</td>
+
+				<td>
+					<form th:action="'/health/'+${find.playerHealthId}+'/delete'" method="post">
+						<input type="submit" value="削除">
+						<input type="hidden" name="eatDate" th:value="${find.eatDate}">
+					</form>
+				</td>
+			</th:block>
+		</tr>
+
+	</table>
+
+</body>
+</html>

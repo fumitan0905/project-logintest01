@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>FCLOGIN</title>
+</head>
+<body>
+	<header>
+		<h1>FC会員ログイン</h1>
+	</header>
+	<main>
+		<form action="/fanclub" method="post">
+			<input type="text" name="memberID" placeholder="メンバーID"><br>
+			<input type="text" name="password" placeholder="パスワード"><br>
+			<button>ログイン</button>
+			<br> <span th:text="${message}" style="color: red"></span>
+		</form>
+	</main>
+</body>
+</html>

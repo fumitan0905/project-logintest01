@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<base href="/">
+	<link rel="stylesheet" href="../css/edit.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h2>健康情報更新</h2>
+	<hr>
+	<form th:action="'/health/'+${player.id}+'/edit'" method="post">
+		<input type="hidden" name="playerId" th:value="${player.playerId}">
+		<input type="hidden" name="name" th:value="${player.name}">
+		<input type="hidden" name="height" th:value="${player.height}">
+		<input type="hidden" name="age" th:value="${player.age}">
+		<input type="hidden" name="position" th:value="${player.position}">
+		<input type="hidden" name="birthplace" th:value="${player.birthplace}">
+		<table border="2">
+			<tr>
+				<th>選手名</th>
+				<td th:text="${player.name}"></td>
+			</tr>
+			<tr>
+				<th>身長</th>
+				<td th:text="${player.height}"></td>
+			</tr>
+			<tr>
+				<th>体重</th>
+				<td><input type="number" name="weight" th:value="${player.weight}"min="40" max="100"></td>
+			</tr>
+			<tr>
+				<th>年齢</th>
+				<td th:text="${player.age}"></td>
+			</tr>
+			<tr>
+				<th>体脂肪率</th>
+				<td><input type="number" name="bodyFatPer" th:value="${player.bodyFatPer}"  min="1" max="30">% </td>
+			</tr>
+			<tr>
+				<th>基礎代謝(オフの日)</th>
+				<td th:text="1.75*(28.5*(${player.weight}-(${player.weight}*(${player.bodyFatPer}/100))))+'(kcal)'">
+				</td>
+			</tr>
+			<tr>
+				<th>基礎代謝(練習の日)</th>
+				<td th:text="2.19*(28.5*(${player.weight}-(${player.weight}*(${player.bodyFatPer}/100))))+'(kcal)'">
+				</td>
+			</tr>
+		</table>
+
+		<table class="edittable">
+			<tr>
+				<td><a href="/health">戻る</a></td>
+				<td><input type="submit" class="button" value="登録"></td>
+			</tr>
+		</table>
+</body>
+
+</html>

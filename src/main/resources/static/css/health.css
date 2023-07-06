@@ -1,0 +1,77 @@
+/** {*/
+/*	margin: 0;*/
+/*	padding: 0;*/
+/*}*/
+
+.calendar-wrap {
+	background: #eee;
+	color: #333;
+	margin: auto;
+	padding: 0;
+	width: 100%;
+	background-size: cover;
+	background-position: center;
+}
+
+.calendar-wrap h1 {
+	line-height: 100px;
+	text-align: center;
+	font-size: 30px;
+}
+
+.calendar {
+	padding: 20px;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.calendar th,
+td {
+	text-align: center;
+	padding: 10px;
+	background-color: #fff;
+}
+
+.calendar td {
+	font-weight: bold;
+}
+
+.calendar a {
+	font-weight: bold;
+	transition: .3s;
+	padding: 0.1em 0.3em;
+	background-image: linear-gradient(to right, #fff 50%, #f89174 50%);
+	/*ホバー時の背景色*/
+	background-position: 0 0;
+	background-size: 200% auto;
+	text-decoration: none;
+	color: gray;
+}
+
+.calendar a:hover {
+	color: #fff;
+	/*文字色*/
+	transition: .3s;
+	background-position: -100% 0;
+}
+
+.health02 table {
+	border-collapse: collapse;
+	margin: auto;
+}
+
+.health02 tr:nth-child(odd) {
+	background-color: #ddd;
+}
+
+.health02 th,
+td {
+	padding: 5px 20px;
+}
+
+.health02 a {
+	text-decoration: none;
+	color: black;
+	 text-shadow: 1px 1px 1px silver;
+	   font-weight: bold;
+}

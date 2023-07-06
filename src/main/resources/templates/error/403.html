@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>No Access</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/error.css">
+</head>
+<body>
+	<div id="main">
+      <div class="fof">
+            <h1>403 権限がありません</h1>
+      </div>
+</div>
+    <ul>
+        <li><a href="index.html" th:href="@{/}">トップページへ</a></li>
+    </ul>
+    <form sec:authorize="authenticated" method="post" action="index.html" th:action="@{/logout}">
+        <button type="submit">ログアウト</button>
+    </form>
+    
+
+</body>
+</html>

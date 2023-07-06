@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>伝言板</title>
+	<link rel="stylesheet" href="../css/message.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h2>伝言板</h2>
+	<hr>
+	<p sec:authorize="authenticated">ようこそ！　<span sec:authentication="principal.loginUser.name">ユーザー</span>さん
+<br><br>
+	連絡事項内容を入力してください</p>
+	<div class="contact"></div>
+	<form action="/message" method="post">
+		<table class="contact-table">
+			<tr>
+				<th class="contact-item">タイトル：</th>
+				<td class="contact-body"><input type="text" name="title"></td>
+			</tr>
+			<tr>
+				<th class="contact-item">内容：</th>
+				<td class="contact-body"><textarea name="content" class="form-textarea"></textarea></td>
+			</tr>
+
+		</table>
+
+		<table class="edittable">
+			<tr>
+				<td>
+					<input type="submit" class="btn_item"value="投稿する"><br>
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				</td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td><a href="/message/archive" class="btn_item">過去伝言</a></td>
+			</tr>
+		</table>
+
+	</form>
+	</div>
+	<footer th:replace="footer"></footer>
+</body>
+
+</html>

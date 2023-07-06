@@ -1,0 +1,37 @@
+ul{
+display: table;
+margin: 0 auto;
+padding: 0;
+width: 80%;
+text-align: center;
+}
+ul li{
+display: table-cell;
+min-width: 50px;
+}
+ul li a{
+display: block;
+width: 100%;
+padding: 10px 0;
+text-decoration: none;
+color: rgb(64, 128, 128);
+font-weight: bold;
+}
+
+ul li a:hover{
+color: #E71B1F;
+}
+
+table {
+    border-collapse:  collapse; /* セルの線を重ねる */
+}
+ 
+tr:nth-child(odd) {
+    background-color:  #ddd;    /* 背景色指定 */
+}
+ 
+th,td {
+    padding: 5px 10px;          /* 余白指定 */
+    
+}
+

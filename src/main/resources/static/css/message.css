@@ -1,0 +1,50 @@
+.contact {
+  width: 800px;/*横幅*/
+  margin: auto ;/*中央寄せ*/
+
+}
+
+.contact-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contact-item,
+.contact-body {
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.contact-item {
+  text-align: left; /* テキスト左寄せ */
+  width: 20%; /* 横幅30%指定（グレーの背景色部分） */
+  background-color: #eee; /* グレーの背景色 */
+}
+
+.contact-body {
+  width: 70%; /* 横幅70%指定（白背景色部分） */
+}
+
+.form-textarea {
+  width: 80%;
+  padding: 10px;
+  height: 150px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.edittable{
+	margin:auto;
+}
+
+.btn_item {
+  display: inline-block;
+  padding: 10px 24px;
+  text-decoration: none;
+  background: rgb(128, 128, 128);
+  color: #fff;
+   border-radius: 5px;  
+}

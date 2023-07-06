@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta charset="UTF-8">
+	<title>成績管理ページ</title>
+	<link rel="stylesheet" href="../css/performance.css">
+</head>
+
+<body>
+	<header th:replace="header"></header>
+	<h2>選手成績一覧</h2>
+	<hr>
+	<nav>
+		<ul>
+			<li><a href="/performance?sort=0">番号順</a></li>
+			<li><a href="/performance?sort=1">得点数</a></li>
+			<li><a href="/performance?sort=2">アシスト数</a></li>
+			<li><a href="/performance?sort=3">ファウル数</a></li>
+			<li><a href="/performance?sort=4">被ファウル数</a></li>
+			<li><a href="/performance?sort=5">イエローカード数</a></li>
+			<li><a href="/performance?sort=6">レッドカード数</a></li>
+			<li><a href="/performance?sort=7">試合数</a></li>
+			<li><a href="/performance/add">新規選手登録</a></li>
+		</ul>
+	</nav>
+	<table border="1">
+		<tr>
+			<th>選手ID</th>
+			<th>背番号</th>
+			<th>選手名</th>
+			<th>身長</th>
+			<th>体重</th>
+			<th>年齢</th>
+			<th>ポジション</th>
+			<th>出身</th>
+			<th>得点数</th>
+			<th>アシスト数</th>
+			<th>ファウル数</th>
+			<th>被ファウル数</th>
+			<th>イエローカード数</th>
+			<th>レッドカード数</th>
+			<th>試合数</th>
+			<th>更新</th>
+			<th>リセット</th>
+		</tr>
+		<tr th:each="pp:${playerPerformance}">
+			<th:block th:each="p:${playerList}" th:if="${pp.id == p.id}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.playerId}"></td>
+				<td th:text="${p.name}"></a></td>
+				<td th:text="${p.height}"></td>
+				<td th:text="${p.weight}"></td>
+				<td th:text="${p.age}"></td>
+				<td th:text="${p.position}"></td>
+				<td th:text="${p.birthplace}"></td>
+			</th:block>
+
+			<td>[[${pp.goals}]]</td>
+			<td>[[${pp.asists}]]</td>
+			<td>[[${pp.foul}]]</td>
+			<td>[[${pp.fouled}]]</td>
+			<td>[[${pp.yellowcard}]]</td>
+			<td>[[${pp.redcard}]]</td>
+			<td>[[${pp.games}]]</td>
+			<td>
+				<form th:action="'/performance/'+${pp.playerId}+'/edit'" method="get">
+					<input type="submit" value="更新">
+
+				</form>
+			</td>
+			<td>
+				<form th:action="'/performance/'+${pp.playerId}+'/reset'" method="post">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<input type="submit" value="リセット">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<br>
+
+	<footer th:replace="footer"></footer>
+</body>
+
+</html>
