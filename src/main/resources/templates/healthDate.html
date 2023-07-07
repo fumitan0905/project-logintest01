@@ -10,15 +10,18 @@
 
 <body>
 		<header th:replace="header"></header>
-	<h1>[[${year}]]年[[${month}]]月[[${day}]]日</h1>
+		<h2>健康情報登録</h2><hr>
+		<div class="datetag">
+	<h3>[[${year}]]年[[${month}]]月[[${day}]]日</h3>
 　　<a href="/health">一覧に戻る</a>
 	<a th:href="|/health/information?year=${lastYear}&month=${lastMonth}&day=${lastDay}|">Yesterday</a>
 	<a th:href="|/health/information?year=${nextYear}&month=${nextMonth}&day=${nextDay}">Tomorrow</a><br>
+	</div><br>
 	<form action="/health" method="post">
 		<input type="hidden" 
 					th:name="${_csrf.parameterName}" 
 					th:value="${_csrf.token}" />
-		<table border="3">
+		<div class="box"><table border="3">
 			<tr>
 				<th>ID</th>
 				<td><input type="number" name="playerHealthId" th:value="${playerHealthId}"></td>
@@ -153,13 +156,14 @@
 						<option value="38">ざるそば</option>
 						<option value="39">オムライス</option>
 					</select></td>
-		</table>
-		<input type="submit" class="btn_item" value="登録">
-				<span th:text="${error}" style="color: red"></span>
 
+	<td>	<input type="submit" class="btn_item" value="登録">
+	</td></table></div>
 	</form>
+					<span th:text="${error}" style="color: red"></span>
 
 
+<br>
 	<table border="1" align="left">
 
 		<tr>

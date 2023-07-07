@@ -15,11 +15,11 @@
 
 			<ul class="sidenav">
 				<li sec:authorize="not authenticated"><a th:href="@{/login}">ログインはこちら</a></li>
-				<li sec:authorize-url="/performance"><a href="performance.html" th:href="@{/performance}">成績管理ページへ</a>
+				<li sec:authorize-url="/performance"><a href="performance.html" th:href="@{/performance}">成績管理ページ</a>
 				</li>
-				<li sec:authorize-url="/health"><a href="health.html" th:href="@{/health}">健康管理ページへ</a></li>
-				<li sec:authorize-url="/schedule"><a href="schedule.html" th:href="@{/schedule}">スケジュール管理ページへ</a></li>
-				<li sec:authorize-url="/message"><a href="message.html" th:href="@{/message}">伝言板ページへ</a></li>
+				<li sec:authorize-url="/health"><a href="health.html" th:href="@{/health}">健康管理ページ</a></li>
+				<li sec:authorize-url="/schedule"><a href="schedule.html" th:href="@{/schedule}">スケジュール管理ページ</a></li>
+				<li sec:authorize-url="/message"><a href="message.html" th:href="@{/message}">伝言板ページ</a></li>
 				<li>
 					<form method="post" action="index.html" th:action="@{/logout}">
 						<input type="submit" class="button" value="ログアウト" />
